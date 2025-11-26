@@ -1,0 +1,24 @@
+img {
+  transition: transform 0.2s ease;
+}
+
+img:hover {
+  transform: scale(1.03);
+}
+
+#mobileMenu {
+  transition: all 0.25s ease;
+}
+
+#imageModal {
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

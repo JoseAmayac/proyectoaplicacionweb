@@ -1,13 +1,273 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/styles.css" />
     <title>Restaurantes en Ocaña</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* Suaviza el scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
   </head>
-  <body>
-    <h1>Bienvenido</h1>
-    <script src="/js/scripts.js"></script>
+
+  <body class="bg-gray-50 text-gray-800">
+    <!-- NAVBAR -->
+    <nav class="bg-white/90 backdrop-blur shadow sticky top-0 z-50">
+      <div
+        class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <div class="text-2xl font-bold text-blue-600">Ocaña Food</div>
+
+        <ul class="hidden md:flex space-x-8 text-lg">
+          <li><a href="#intro" class="hover:text-blue-600">Inicio</a></li>
+          <li><a href="#galeria" class="hover:text-blue-600">Galería</a></li>
+          <li>
+            <a href="#comentarios" class="hover:text-blue-600">Comentarios</a>
+          </li>
+        </ul>
+
+        <button id="menuBtn" class="md:hidden text-3xl">☰</button>
+      </div>
+
+      <ul id="mobileMenu" class="hidden md:hidden bg-white border-t">
+        <li>
+          <a href="#intro" class="block px-4 py-2 hover:bg-gray-100">Inicio</a>
+        </li>
+        <li>
+          <a href="#galeria" class="block px-4 py-2 hover:bg-gray-100"
+            >Galería</a
+          >
+        </li>
+        <li>
+          <a href="#comentarios" class="block px-4 py-2 hover:bg-gray-100"
+            >Comentarios</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- INTRO -->
+    <section id="intro" class="max-w-4xl mx-auto px-4 py-20 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+        Mis restaurantes favoritos en Ocaña
+      </h1>
+
+      <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
+        De las cosas que más disfruto es la comida local. Y aunque Ocaña no es
+        una ciudad muy grande, cuenta con una excelente variedad de restaurantes
+        que ofrecen desde sabores tradicionales hasta propuestas modernas.
+        <br /><br />
+        Aquí encontrarás una selección visual de algunos de ellos, junto con un
+        espacio para compartir tus propias experiencias.
+        <br /><br />
+        Te invito a usar la sección interactiva para dejar tus comentarios y
+        ayudar a otros a descubrir nuevos lugares y sabores en nuestra ciudad.
+      </p>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria" class="max-w-6xl mx-auto px-4 py-16">
+      <h2 class="text-3xl font-semibold mb-10 text-center">
+        Galería de Restaurantes
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <!-- CARD TEMPLATE REUSADO -->
+        <div
+          class="relative rounded-xl overflow-hidden shadow-lg group cursor-pointer bg-white"
+          onclick="openImageModal('/img/pancho_villa.jpg', 'Taquería Pancho Villa', 'Cultura mexicana servida en la mesa. Comida de origen, ambiente de fiesta y atención de familia.')"
+        >
+          <img src="/img/pancho_villa.jpg" class="w-full h-64 object-cover" />
+
+          <div
+            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-4"
+          >
+            <h3 class="text-white text-lg font-semibold">
+              Taquería Pancho Villa
+            </h3>
+            <p class="text-gray-200 text-sm">
+              Cultura mexicana servida en la mesa. Comida de origen, ambiente de
+              fiesta.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="relative rounded-xl overflow-hidden shadow-lg group cursor-pointer bg-white"
+          onclick="openImageModal('/img/family_food.jpg', 'Family Food', 'En Family food todos los días es de promoción.')"
+        >
+          <img src="/img/family_food.jpg" class="w-full h-64 object-cover" />
+
+          <div
+            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-4"
+          >
+            <h3 class="text-white text-lg font-semibold">Family Food</h3>
+            <p class="text-gray-200 text-sm">
+              En Family food todos los días hay promoción.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="relative rounded-xl overflow-hidden shadow-lg group cursor-pointer bg-white"
+          onclick="openImageModal('/img/la_milagrosa.png', 'La Milagrosa', 'Hamburguesas jugosas y deliciosas con ingredientes de alta calidad.')"
+        >
+          <img src="/img/la_milagrosa.png" class="w-full h-64 object-cover" />
+
+          <div
+            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-4"
+          >
+            <h3 class="text-white text-lg font-semibold">La Milagrosa</h3>
+            <p class="text-gray-200 text-sm">
+              Hamburguesas jugosas. Ingredientes frescos.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="relative rounded-xl overflow-hidden shadow-lg group cursor-pointer bg-white"
+          onclick="openImageModal('/img/pieros.jpg', 'Piero´s Pizza', '39 años de cocina italiana: pizza, pasta, lasagna y más.')"
+        >
+          <img src="/img/pieros.jpg" class="w-full h-64 object-cover" />
+
+          <div
+            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-4"
+          >
+            <h3 class="text-white text-lg font-semibold">Piero´s Pizza</h3>
+            <p class="text-gray-200 text-sm">
+              39 años de tradición italiana en Ocaña.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="relative rounded-xl overflow-hidden shadow-lg group cursor-pointer bg-white"
+          onclick="openImageModal('/img/don_taco.jpg', 'Don Taco', 'Cocina TEX-MEX con mucho sabor.')"
+        >
+          <img src="/img/don_taco.jpg" class="w-full h-64 object-cover" />
+
+          <div
+            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-4"
+          >
+            <h3 class="text-white text-lg font-semibold">Don Taco</h3>
+            <p class="text-gray-200 text-sm">Cocina TEX-MÉX 🌮🇲🇽</p>
+          </div>
+        </div>
+
+        <div
+          class="relative rounded-xl overflow-hidden shadow-lg group cursor-pointer bg-white"
+          onclick="openImageModal('/img/perrada_william.jpg', 'La Perrada de William', '30 años de experiencia en el sector gastronómico.')"
+        >
+          <img
+            src="/img/perrada_william.jpg"
+            class="w-full h-64 object-cover"
+          />
+
+          <div
+            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-4"
+          >
+            <h3 class="text-white text-lg font-semibold">
+              La Perrada de William
+            </h3>
+            <p class="text-gray-200 text-sm">Más de 30 años de tradición.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL -->
+    <div
+      id="imageModal"
+      class="fixed inset-0 bg-black/70 hidden items-center justify-center p-6 z-50"
+    >
+      <div class="relative bg-white rounded-xl max-w-3xl w-full p-6 shadow-xl">
+        <!-- Botón flotante fuera del contenedor -->
+        <button
+          onclick="closeImageModal()"
+          class="absolute -top-4 -right-4 bg-white text-black rounded-full shadow-lg w-10 h-10 flex items-center justify-center text-xl hover:bg-gray-200"
+        >
+          ✕
+        </button>
+
+        <img id="modalImage" class="w-full rounded-lg mb-4" />
+        <h3 id="modalTitle" class="text-2xl font-semibold mb-1"></h3>
+        <p id="modalDescription" class="text-gray-700"></p>
+      </div>
+    </div>
+
+    <section id="comentarios" class="max-w-6xl mx-auto px-4 py-20">
+      <h2 class="text-3xl font-semibold mb-10 text-center">Comentarios</h2>
+
+      <!-- LISTA DE COMENTARIOS (GRID) -->
+      <div
+        id="commentList"
+        class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16"
+      >
+        <!-- Comentarios dinámicos -->
+      </div>
+
+      <!-- FORMULARIO -->
+      <form
+        id="commentForm"
+        class="bg-white shadow-lg p-6 rounded-xl max-w-xl mx-auto space-y-4"
+      >
+        <h3 class="text-2xl font-semibold text-center mb-3">
+          Deja tu comentario
+        </h3>
+
+        <input
+          id="name"
+          type="text"
+          placeholder="Tu nombre"
+          class="w-full border px-3 py-2 rounded-lg"
+          required
+        />
+
+        <input
+          id="email"
+          type="email"
+          placeholder="Tu correo"
+          class="w-full border px-3 py-2 rounded-lg"
+          required
+        />
+
+        <textarea
+          id="comment"
+          placeholder="Escribe tu comentario"
+          class="w-full border px-3 py-2 rounded-lg h-28"
+          required
+        ></textarea>
+
+        <button
+          class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 text-lg"
+        >
+          Enviar comentario
+        </button>
+
+        <div id="formAlert" class="hidden p-3 text-white rounded"></div>
+      </form>
+    </section>
+
+    <footer class="bg-gray-900 text-white text-center py-5 text-lg">
+      © 2025 Ocaña Food — Desarrollado por Jose
+    </footer>
+
+    <script src="js/scripts.js"></script>
   </body>
 </html>
